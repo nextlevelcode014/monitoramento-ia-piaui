@@ -54,6 +54,9 @@ class TextProcessor:
         return " ".join(filtered_words)
 
     def process_text(self, text):
+        if not text:
+            return ""
+
         text = self.clean_html_tags(text)
 
         text = self.clean_special_characters(text)
