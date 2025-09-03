@@ -9,41 +9,41 @@ Criar um painel simplificado para monitorar menções sobre "Inteligência Artif
 ## Arquitetura do Projeto
 
 ```bash
-    monitoramento-ia-piaui/
-    ├── app.py # Dashboard principal (Streamlit)
-    ├── SCHEDULE.md 
-    ├── DECISIONS.md # Por que?
-    ├── requirements.txt 
-    ├── README.md
-    ├── pyproject.toml
-    ├── data/ # Dados do sistema
-    │   ├── raw/ # XML e JSON brutos do RSS
-    │   └── processed/ # CSV e JSON processados
-    ├── src/ # Módulos do sistema
-    │   ├── components/ # Componentes visuais reutilizáveis
-    │   │   ├── about_page.py
-    │   │   ├── dashboard_components.py
-    │   │   ├── dashboard_styles.py #  Estilos CSS customizados
-    │   │   ├── main_dashboard.py
-    │   │   └── report_modal.py
-    │   ├── utils/ # Lógicas auxiliares
-    │   │   ├── advanced_analysis.py
-    │   │   ├── create_report_txt.py
-    │   │   ├── generate_statistical_report.py
-    │   │   ├── load_processed_data.py
-    │   │   └── safe_dataframe_display.py
-    │   ├── data_collector.py # Coleta de dados RSS
-    │   ├── data_pipeline.py # Pipeline completo de processamento
-    │   ├── sentiment_analyzer.py # Análise de sentimento por regras
-    │   └── text_processor.py # Limpeza e processamento de textos
-    ├── run_scripts/ # Scripts auxiliares
-    │   ├── run_dashboard.py
-    │   ├── run_dashboard.py
-    │   └── quick_update.py
-    └── tests/
-        ├── test_collector.py
-        ├── test_endpoint.py
-        └── test_processing.py
+monitoramento-ia-piaui/
+├── app.py # Dashboard principal (Streamlit)
+├── SCHEDULE.md 
+├── DECISIONS.md # Por que?
+├── requirements.txt 
+├── README.md
+├── pyproject.toml
+├── data/ # Dados do sistema
+│   ├── raw/ # XML e JSON brutos do RSS
+│   └── processed/ # CSV e JSON processados
+├── src/ # Módulos do sistema
+│   ├── components/ # Componentes visuais reutilizáveis
+│   │   ├── about_page.py
+│   │   ├── dashboard_components.py
+│   │   ├── dashboard_styles.py #  Estilos CSS customizados
+│   │   ├── main_dashboard.py
+│   │   └── report_modal.py
+│   ├── utils/ # Lógicas auxiliares
+│   │   ├── advanced_analysis.py
+│   │   ├── create_report_txt.py
+│   │   ├── generate_statistical_report.py
+│   │   ├── load_processed_data.py
+│   │   └── safe_dataframe_display.py
+│   ├── data_collector.py # Coleta de dados RSS
+│   ├── data_pipeline.py # Pipeline completo de processamento
+│   ├── sentiment_analyzer.py # Análise de sentimento por regras
+│   └── text_processor.py # Limpeza e processamento de textos
+├── run_scripts/ # Scripts auxiliares
+│   ├── run_dashboard.py
+│   ├── run_dashboard.py
+│   └── quick_update.py
+└── tests/
+    ├── test_collector.py
+    ├── test_endpoint.py
+    └── test_processing.py
 
 ```
 ---
@@ -181,5 +181,5 @@ processed_at, word_count
 ```
 
 ## Mais informações
-**Sobre o objetivo do projeto leia:** [ABOUT.md](ABOUT.md)
-**Cronograma e estrutura dos commits:** [SSCHEDULE.md](SCHEDULE.md)
+- **Sobre o objetivo do projeto leia:** [ABOUT.md](ABOUT.md)
+- **Cronograma e estrutura dos commits:** [SCHEDULE.md](SCHEDULE.md)
