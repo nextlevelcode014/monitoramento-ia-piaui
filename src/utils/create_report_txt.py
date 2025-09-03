@@ -68,15 +68,9 @@ coletadas entre {stats["date_range"]["start"]} e {stats["date_range"]["end"]}.
         count = stats["source_analysis"]["count"][source]
         report += f"\n| {source} | {mean_score} | {count} |"
 
-    report += f"""
+    report += """
 
 ## LIMITAÇÕES E METODOLOGIA
-
-### Metodologia Utilizada:
-- **Coleta:** Feed RSS do Google News
-- **Processamento:** Limpeza de texto e remoção de stopwords
-- **Análise:** Sistema baseado em regras com {len(["positivo", "negativo", "neutro"])} categorias
-- **Score:** Escala de -1 (muito negativo) a +1 (muito positivo)
 
 ### Limitações Reconhecidas:
 - Análise baseada em regras simples, não Machine Learning
@@ -89,11 +83,6 @@ coletadas entre {stats["date_range"]["start"]} e {stats["date_range"]["end"]}.
 2. **Expansão de Fontes:** Incluir redes sociais e blogs especializados
 3. **Melhoria da Análise:** Considerar implementar modelos de ML no futuro
 4. **Contextualização:** Cruzar dados com eventos locais e políticas públicas
-
-## CONTATO
-
-Para dúvidas sobre este relatório ou solicitação de análises customizadas, 
-entre em contato com a equipe de monitoramento.
 
 ---
 *Relatório gerado automaticamente pelo Sistema de Monitoramento de IA - Piauí*

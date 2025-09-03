@@ -11,7 +11,7 @@ Criar um painel simplificado para monitorar menções sobre "Inteligência Artif
 ```bash
     monitoramento-ia-piaui/
     ├── app.py # Dashboard principal (Streamlit)
-    ├── CRONOGRAMA.md 
+    ├── SCHEDULE.md 
     ├── DECISIONS.md # Por que?
     ├── requirements.txt 
     ├── README.md
@@ -46,92 +46,140 @@ Criar um painel simplificado para monitorar menções sobre "Inteligência Artif
         └── test_processing.py
 
 ```
+---
+
 ## **Instalação e Configuração**
 
 ### **Pré-requisitos**
-- Python 3.8+ 
-- Git
-- Conexão com internet (para coleta RSS)
+- Python 3.8+  
+- Git  
+- Conexão com internet (para coleta RSS)  
+- pip ou uv (recomendado)
+---
 
 ### **Passo a Passo**
 
-1. **Clone o repositório:**
+#### **Clone o repositório**
 ```bash
-    git clone https://github.com/nextlevelcode014/monitoramento-ia-piaui.git
-    cd monitoramento-ia-piaui
+git clone https://github.com/nextlevelcode014/monitoramento-ia-piaui.git
+cd monitoramento-ia-piaui
 ```
 
-1. **Crie e ative o ambiente virtual**
+#### **Crie e ative o ambiente virtual**
 ```bash
-    # Criar ambiente virtual
-    python -m venv venv
+# Criar ambiente virtual
+python -m venv venv
 
-    # Ativar ambiente virtual
-    # Windows:
-    venv\Scripts\activate
-    # Linux/Mac:
-    source venv/bin/activate
+# Ativar ambiente virtual
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
 ```
 
-3. **Instale as dependências**
+#### **Instale as dependências**
 ```bash
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-4. **Execute a coleta inicial de dados**
+---
+
+### **Execução dos scripts**
+
+#### **Coleta inicial de dados**
 ```bash
-    python src/data_collector.py
+# Usando Python diretamente
+python -m src.data_collector
+
+# Usando uv
+uv run -m src.data_collector
 ```
 
-5. **Processe os dados coletados**
+#### **Processamento dos dados coletados**
 ```bash
-    python src/data_pipeline.py
+# Usando Python diretamente
+python -m src.data_pipeline
+
+# Usando uv
+uv run -m src.data_pipeline
 ```
 
-6. **Inicie o dashboard**
-```bash 
-    streamlit run app.py
+#### **Iniciar o dashboard**
+```bash
+# Usando Streamlit diretamente
+streamlit run app.py
+
+# Usando uv
+uv run streamlit run app.py
 ```
 
-7. **Acesse no navegador**
+#### **Acesse no navegador**
 ```bash
-    http://localhost:8501
+http://localhost:8501
 ```
 
-## Como Usar
-**Atualização Automática (Recomendado):**
-```bash
-    python quick_update.py
-```
-Executa coleta → processamento → dashboard em sequência
+---
 
-**Apenas Dashboard**
+### **Como Usar**
+
+#### **Atualização Automática (Recomendado)**
 ```bash
-    streamlit run app.py
+# Usando Python
+python -m run_scripts.quick_update
+
+# Usando uv
+uv run -m run_scripts.quick_update
+```
+> Executa coleta → processamento → dashboard em sequência  
+
+#### **Apenas Dashboard**
+```bash
+streamlit run app.py
+
+uv run streamlit run app.py
 ```
 
-**Modo Desenvolvimento**
+#### **Modo Desenvolvimento**
 ```bash
-    python dev_dashboard.py
+python -m run_scripts.dev_dashboard
+
+uv run -m run_scripts.dev_dashboard
+```
+
+## Testes rapídos
+```bash
+# Usando python
+python -m tests.test_endpoint 
+python -m tests.test_collector
+python -m tests.test_processing
+
+# Usando uv
+uv run -m tests.test_endpoint 
+uv run -m tests.test_collector
+uv run -m tests.test_processing
 ```
 
 ## Estrutura de Dados
 **Dados Brutos (JSON):**
 ```json
-    {
-        "title": "string",
-        "description": "string", 
-        "link": "string",
-        "source": "string",
-        "pub_date": "string",
-        "search_query": "string",
-        "collected_at": "ISO datetime"
-    }
+{
+    "title": "string",
+    "description": "string", 
+    "link": "string",
+    "source": "string",
+    "pub_date": "string",
+    "search_query": "string",
+    "collected_at": "ISO datetime"
+}
 ```
 **Dados Processados (CSV):**
 ```csv
-    title, description, source, link, pub_date, 
-    title_clean, description_clean, full_text_clean,
-    sentiment_score, sentiment_class, positive_words_count, negative_words_count,
-    processed_at, word_count
+title, description, source, link, pub_date, 
+title_clean, description_clean, full_text_clean,
+sentiment_score, sentiment_class, positive_words_count, negative_words_count,
+processed_at, word_count
 ```
+
+## Mais informações
+**Sobre o objetivo do projeto leia:** [ABOUT.md](ABOUT.md)
+**Cronograma e estrutura dos commits:** [SSCHEDULE.md](SCHEDULE.md)

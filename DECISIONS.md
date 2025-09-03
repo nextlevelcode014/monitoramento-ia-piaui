@@ -17,7 +17,7 @@ Documento explicativo sobre **como pensei, quais caminhos considerei e por que e
   - Utilizar o **uv** como package manager no lugar do **pip**, para evitar conflitos de dependências.  
   - Implementar filtro para remoção de notícias repetidas (baseado no link).  
   - Adicionar um **User-Agent** para reduzir chances de bloqueio nas requisições.  
-  - Organizar os commits por etapas, seguindo a estrutura definida em `CRONOGRAMA.md`.  
+  - Organizar os commits por etapas, seguindo a estrutura definida em `SCHEDULE.md`.  
 
 - **Por que escolhi isso**  
   - O RSS do Google News é rápido, padronizado e multiplataforma.  
@@ -74,3 +74,11 @@ Documento explicativo sobre **como pensei, quais caminhos considerei e por que e
 - **Por que escolhi isso**  
   - Integrações nativas com `Plotly` e `WordCloud` torna o processo mais escalavel.  
   - Tratamento de exceções melhora a robustez e experiência do usuário.  
+
+## Etapa 4: Documentação e Finalização
+- **Pontos finais**  
+  - Pelo prazo de entrega usei AI para agilizar na documentação e revisão do código.
+  - Documentação básica com estrutura do projeto e comandos uteis.
+  - Arquitetura simples e sem muita padronização.
+  - Resolvi adicionar o arquivo [ABOUT.md](ABOUT.md) sobre o objetivo do projeto.
+  - Relatório de monitoramento por escrito para download e opção de baixa relatório, dados brutos e estatísticas.
