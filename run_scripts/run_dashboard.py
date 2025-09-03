@@ -17,8 +17,8 @@ def run_dashboard():
     if not check_data_exists():
         print("Dados processados não encontrados!")
         print("Execute primeiro:")
-        print("1. python src/data_collector.py")
-        print("2. python src/data_pipeline.py")
+        print("1. python src.data_collector")
+        print("2. python src.data_pipeline")
         return
 
     print("🚀 Iniciando dashboard...")
