@@ -31,8 +31,8 @@ def main_dashboard():
             <h4>Dados não encontrados</h4>
             <p>Execute os seguintes comandos para gerar os dados:</p>
             <pre>
-python src/data_collector.py
-python src/data_pipeline.py
+python src.data_collector
+python src.data_pipeline
             </pre>
         </div>
         """,
@@ -45,7 +45,7 @@ python src/data_pipeline.py
         st.stop()
 
     with st.sidebar:
-        st.markdown("### 🔍 Filtros e Controles")
+        st.markdown("### Filtros e Controles")
 
         st.info(f"**{len(df)}** notícias analisadas")
 
