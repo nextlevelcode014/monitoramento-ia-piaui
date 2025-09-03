@@ -6,7 +6,6 @@ import json
 from datetime import datetime
 from src.components.dashboard_styles import create_section_header
 from src.utils.load_processed_data import load_processed_data
-from bs4 import BeautifulSoup
 from src.utils.safe_dataframe_display import safe_dataframe_display
 
 
@@ -340,10 +339,9 @@ python src/data_pipeline.py
                             description = str(
                                 row.get("description", "Descrição não disponível")
                             )
-                            description = BeautifulSoup(description, "html.parser")
 
                             link = str(row.get("link", "Link não disponível"))
-                            st.info(f"**Descrição:** {description.get_text()}")
+                            st.info(f"**Descrição:** {description}")
                             st.info(f"**Link:** {link}")
 
                     with col_metrics:

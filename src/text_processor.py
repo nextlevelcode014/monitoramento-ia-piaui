@@ -1,6 +1,7 @@
 import re
 import pandas as pd
 from bs4 import BeautifulSoup
+import html
 
 
 class TextProcessor:
@@ -19,11 +20,17 @@ class TextProcessor:
         }
         # fmt: on
 
-    def clean_html_tags(self, text):
+    def clean_html(self, text):
         if not text:
             return ""
 
+        text = html.unescape(text)
+
+        text = re.sub(r"<.*?>", "", text)
+        text = text.replace("&nbsp;", " ")
+        text = re.sub(r"\s+", " ", text)
         soup = BeautifulSoup(text, "html.parser")
+
         return soup.get_text()
 
     def clean_special_characters(self, text):
@@ -31,15 +38,10 @@ class TextProcessor:
             return ""
 
         text = text.lower()
-
-        text = re.sub(r"\s+", " ", text)
-
+        text = re.sub(r"http\S+|www\S+|https\S+", "", text, flags=re.MULTILINE)
         text = re.sub(r"[^\w\s\-àáâãäéêëíîïóôõöúûüç]", " ", text)
-
         text = re.sub(r"\b\d+\b", "", text)
-
         text = re.sub(r"\s+", " ", text).strip()
-
         return text
 
     def remove_stopwords(self, text):
@@ -50,23 +52,21 @@ class TextProcessor:
         filtered_words = [
             word for word in words if word not in self.stopwords and len(word) > 2
         ]
-
         return " ".join(filtered_words)
 
     def process_text(self, text):
         if not text:
             return ""
 
-        text = self.clean_html_tags(text)
-
+        text = self.clean_html(text)
         text = self.clean_special_characters(text)
-
         text = self.remove_stopwords(text)
-
         return text
 
     def process_news_dataframe(self, df):
         df_processed = df.copy()
+
+        df_processed["description"] = df_processed["description"].apply(self.clean_html)
 
         df_processed["title_clean"] = df_processed["title"].apply(self.process_text)
         df_processed["description_clean"] = df_processed["description"].apply(
@@ -85,12 +85,30 @@ class TextProcessor:
         return df_processed
 
 
+# --- Demonstração com o seu exemplo ---
 if __name__ == "__main__":
     processor = TextProcessor()
 
-    test_text = (
-        "<p>A <b>Inteligência Artificial</b> está revolucionando o Piauí! 🚀</p>"
+    problem_html = (
+        '<a href="https://news.google.com/..." target="_blank">'
+        "Piauí Instituto de Tecnologia (PIT) destina 25% das vagas exclusivamente para mulheres em cursos de IA"
+        '</a>&nbsp;&nbsp;<font color="#6f6f6f">Assembleia Legislativa do Piauí</font>'
     )
-    cleaned = processor.process_text(test_text)
-    print(f"Original: {test_text}")
-    print(f"Limpo: {cleaned}")
+
+    print(f"Texto Original com HTML:\n{problem_html}\n")
+
+    cleaned_text = processor.process_text(problem_html)
+
+    print(f"Resultado Final Limpo:\n{cleaned_text}")
+
+    print("\n--- Exemplo com DataFrame ---\n")
+
+    data = {"title": ["Notícia de IA no Piauí"], "description": [problem_html]}
+    news_df = pd.DataFrame(data)
+
+    processed_df = processor.process_news_dataframe(news_df)
+    print(
+        processed_df[
+            ["title_clean", "description_clean", "full_text_clean", "word_count"]
+        ].to_string()
+    )
