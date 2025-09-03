@@ -6,6 +6,8 @@ Sistema automatizado para coletar, processar e analisar notícias sobre Intelig�
 
 Criar um painel simplificado para monitorar menções sobre "Inteligência Artificial no Piauí" em fontes de notícias públicas, com foco em análise de sentimento e identificação de temas recorrentes.
 
+[![Assista ao Vídeo](assets/image.png)](https://www.youtube.com/watch?v=P6ZHgfQIuQE)
+
 ## Arquitetura do Projeto
 
 ```bash
