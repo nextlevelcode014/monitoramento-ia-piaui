@@ -12,7 +12,7 @@ class RSSCollector:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         }
 
-    def build_search_url(self, query, language="pt=BR", country="BR"):
+    def build_search_url(self, query, language="pt-BR", country="BR"):
         params = {
             "q": query,
             "hl": language,
@@ -128,10 +128,12 @@ if __name__ == "__main__":
         "Inteligência Artificial Teresina",
     ]
 
-    news_data = collector.collect_news(search_queries, max_news=15)
+    print(collector.build_search_url(search_queries))
 
-    if news_data:
-        filepath = collector.save_raw_data(news_data)
-        print(f"\nColetadas {len(news_data)} notícias únicas")
-    else:
-        print("Nenhuma notícia foi coletada")
+    # news_data = collector.collect_news(search_queries, max_news=15)
+
+    # if news_data:
+    # filepath = collector.save_raw_data(news_data)
+    # print(f"\nColetadas {len(news_data)} notícias únicas")
+    # else:
+    # print("Nenhuma notícia foi coletada")
